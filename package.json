@@ -4,7 +4,7 @@
   "description": "Lightweight library that let's you detect the current breakpoint of the window from the breakpoints in your tailwind config",
   "main": "tailbreak.js",
   "scripts": {
-    "test": "mocha --recursive /tests/*.test.js"
+    "test": "mocha --recursive ./tests/*.test.js"
   },
   "keywords": [
     "breakpoint",
@@ -14,6 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.1.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
     "postcss": "^8.2.1",
     "tailwindcss": "^2.0.2"
   }
