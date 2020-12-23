@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     window.addEventListener('resize', handle)
 
-    console.log(Tailbreak.sm);
+    console.log(Tailbreak.watch.sm.matches);
     return () => {window.removeEventListener('resize', handle)}
   })
 

@@ -28,7 +28,7 @@ describe('Tailbreak Class', () => {
     tb.should.have.property('sm');
   })
   it('breakpoint returns boolean value', () => {
-    tb.sm.should.be.a('boolean');
+    tb.sm.matches.should.be.a('boolean');
   })
   it('creates all breakpoints with default config', () => {
     const defaultBreakpoints = ['sm', 'md', 'lg', 'xl', '2xl'];
@@ -54,13 +54,13 @@ describe('Tailbreak Class', () => {
     mediaStrings.should.deep.equal(defaultMediaStrings);
   })
   it('returns false match from mock matchMedia correctly', () => {
-    tb.sm.should.equal(false);
+    tb.sm.matches.should.equal(false);
   })
   it('returns true when match mock is changed to true', () => {
     window.matchMedia = trueMatch;
     // Regenerate config with this matcher
     tb = Tailbreak(testConfig);
-    tb.sm.should.equal(true);
+    tb.sm.matches.should.equal(true);
     // Tear down
     window.matchMedia = falseMatch;
   })
