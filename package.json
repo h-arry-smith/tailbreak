@@ -1,6 +1,6 @@
 {
   "name": "tailbreak",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Lightweight library that let's you detect the current breakpoint of the window from the breakpoints in your tailwind config",
   "main": "./lib/tailbreak.js",
   "files": [
