@@ -6,6 +6,11 @@
   "files": [
     "/lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h-arry-smith/tailbreak.git"
+  },
+  "license": "MIT",
   "scripts": {
     "test": "mocha --recursive ./tests/*.test.js",
     "test-w": "mocha -w --recursive ./tests/*.test.js"
@@ -17,7 +22,6 @@
     "query"
   ],
   "author": "Harry Smith",
-  "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.1.0",
     "chai": "^4.2.0",
