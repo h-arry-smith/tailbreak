@@ -16,7 +16,7 @@ const custom = require('./custom.config');
 const testConfig = resolveConfig(config);
 const customConfig = resolveConfig(custom);
 
-const Tailbreak = require('../tailbreak')
+const Tailbreak = require('../lib/tailbreak')
 
 let tb;
 
