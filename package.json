@@ -9,7 +9,9 @@
   },
   "keywords": [
     "breakpoint",
-    "tailwind"
+    "tailwind",
+    "media",
+    "query"
   ],
   "author": "Harry Smith",
   "license": "ISC",

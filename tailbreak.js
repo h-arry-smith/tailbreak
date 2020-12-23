@@ -1,5 +1,10 @@
 // As per the specification for Tailwind 2.0 config files return correctly formatted
 // media strings
+
+// TODO: Build example and test functionality in browser
+// TODO: README.md
+// TODO: Code style review before publish
+
 const getMediaString = (media) => {
   // Guard, only string provided? Must be min breakpoint from default
   if (typeof media === 'string') {
@@ -63,5 +68,3 @@ const Tailbreak = (config) => {
 }
 
 module.exports = Tailbreak;
-
-// TODO: Get keys of config and add getters to self
