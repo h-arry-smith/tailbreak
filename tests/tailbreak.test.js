@@ -11,8 +11,10 @@ const falseMatch = ((media) => { return { media, matches: false, addListener: ()
 
 window.matchMedia = falseMatch;
 
-const config = require('./test.config')
+const config = require('./test.config');
+const custom = require('./custom.config');
 const testConfig = resolveConfig(config);
+const customConfig = resolveConfig(custom);
 
 const Tailbreak = require('../tailbreak')
 
@@ -61,5 +63,37 @@ describe('Tailbreak Class', () => {
     tb.sm.should.equal(true);
     // Tear down
     window.matchMedia = falseMatch;
+  })
+  describe('custom config options', () => {
+    beforeEach(() => {
+      tb = Tailbreak(customConfig);
+    })
+    it ('contains all breakpoints from custom config', () => {
+      const breakpoints = ['custom_name', 'max', , 'minmax', 'multirange', 'raw', 'rawprint'];
+      Object.getOwnPropertyNames(tb).should.include.members(breakpoints);
+    })
+    it ('handles custom named breakpoints', () => {
+      tb.should.have.property('custom_name');
+    })
+    it ('handles max breakpoints', () => {
+      const result = '(max-width: 100px)';
+      tb.watch.max.media.should.equal(result);
+    })
+    it ('handles min-max breakpoints', () => {
+      const result = '(min-width: 100px) and (max-width: 200px)';
+      tb.watch.minmax.media.should.equal(result);
+    })
+    it ('handles multiple range breakpoints', () => {
+      const result = '(min-width: 100px) and (max-width: 200px), (min-width: 300px)'
+      tb.watch.multirange.media.should.equal(result);
+    })
+    it ('handles raw breakpoint', () => {
+      const result = '(orientation: potrait)';
+      tb.watch.raw.media.should.equal(result);
+    })
+    it ('handles raw print correctly', () => {
+      const result = 'print';
+      tb.watch.rawprint.media.should.equal(result);
+    })
   })
 })
