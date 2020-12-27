@@ -41,8 +41,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Example Gif](https://github.com/h-arry-smith/tailbreak/blob/main/tailbreak.gif)
 
 **tailbreak** is a ultra lightweight (80 loc!) utility that let's you detect which tailwind breakpoint you are in based on your configuration file. It supports all the custom screen breakpoints from the tailwind documentation. It has no dependencies, other than the reccomended resolveConfig which already comes with tailwind.
 
