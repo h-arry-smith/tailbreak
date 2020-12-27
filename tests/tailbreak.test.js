@@ -11,9 +11,7 @@ const falseMatch = ((media) => { return { media, matches: false, addListener: ()
 
 window.matchMedia = falseMatch;
 
-const config = require('./test.config');
 const custom = require('./custom.config');
-const testConfig = resolveConfig(config);
 const customConfig = resolveConfig(custom);
 
 const Tailbreak = require('../lib/tailbreak')
@@ -22,7 +20,7 @@ let tb;
 
 describe('Tailbreak Class', () => {
   beforeEach(() => {
-    tb = Tailbreak(testConfig);
+    tb = Tailbreak();
   })
   it('has property for sm breakpoint', () => {
     tb.should.have.property('sm');
@@ -57,13 +55,33 @@ describe('Tailbreak Class', () => {
 
     mediaStrings.should.deep.equal(defaultMediaStrings);
   })
+  it('generates correct media query defaults when no config is passed', () => {
+    const defaultTb = Tailbreak();
+    const defaultMediaStrings = [
+      '(min-width: 640px)',
+      '(min-width: 768px)',
+      '(min-width: 1024px)',
+      '(min-width: 1280px)',
+      '(min-width: 1536px)',
+    ]
+
+    const mediaStrings = [];
+    for (let key of Object.getOwnPropertyNames(defaultTb)) {
+      // only add the private members
+      if (key.charAt(0) === '_') {
+        mediaStrings.push(defaultTb[key].media)
+      }
+    }
+
+    mediaStrings.should.deep.equal(defaultMediaStrings);
+  })
   it('returns false match from mock matchMedia correctly', () => {
     tb.sm.should.equal(false);
   })
   it('returns true when match mock is changed to true', () => {
     window.matchMedia = trueMatch;
     // Regenerate config with this matcher
-    tb = Tailbreak(testConfig);
+    tb = Tailbreak();
     tb.sm.should.equal(true);
     // Tear down
     window.matchMedia = falseMatch;
