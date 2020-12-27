@@ -34,8 +34,9 @@ describe('Tailbreak Class', () => {
     const defaultBreakpoints = ['sm', 'md', 'lg', 'xl', '2xl'];
     Object.getOwnPropertyNames(tb).should.include.members(defaultBreakpoints);
   })
-  it('has object for media watchers', () => {
-    tb.should.have.property('watch');
+  it('has private members for MediaQueryList objects', () => {
+    const private = ['_sm', '_md', '_lg', '_xl', '_2xl'];
+    Object.getOwnPropertyNames(tb).should.include.members(private);
   })
   it('generates correct media query for all default breakpoints', () => {
     const defaultMediaStrings = [
@@ -47,8 +48,11 @@ describe('Tailbreak Class', () => {
     ]
 
     const mediaStrings = [];
-    for (let key in tb.watch) {
-      mediaStrings.push(tb.watch[key].media)
+    for (let key of Object.getOwnPropertyNames(tb)) {
+      // only add the private members
+      if (key.charAt(0) === '_') {
+        mediaStrings.push(tb[key].media)
+      }
     }
 
     mediaStrings.should.deep.equal(defaultMediaStrings);
@@ -77,23 +81,23 @@ describe('Tailbreak Class', () => {
     })
     it ('handles max breakpoints', () => {
       const result = '(max-width: 100px)';
-      tb.watch.max.media.should.equal(result);
+      tb._max.media.should.equal(result);
     })
     it ('handles min-max breakpoints', () => {
       const result = '(min-width: 100px) and (max-width: 200px)';
-      tb.watch.minmax.media.should.equal(result);
+      tb._minmax.media.should.equal(result);
     })
     it ('handles multiple range breakpoints', () => {
       const result = '(min-width: 100px) and (max-width: 200px), (min-width: 300px)'
-      tb.watch.multirange.media.should.equal(result);
+      tb._multirange.media.should.equal(result);
     })
     it ('handles raw breakpoint', () => {
       const result = '(orientation: potrait)';
-      tb.watch.raw.media.should.equal(result);
+      tb._raw.media.should.equal(result);
     })
     it ('handles raw print correctly', () => {
       const result = 'print';
-      tb.watch.rawprint.media.should.equal(result);
+      tb._rawprint.media.should.equal(result);
     })
   })
 })
