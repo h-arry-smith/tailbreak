@@ -3,6 +3,7 @@
   "version": "0.2.1",
   "description": "Lightweight library that let's you detect the current breakpoint of the window from the breakpoints in your tailwind config",
   "main": "./lib/tailbreak.js",
+  "types": "./lib/main.d.ts",
   "files": [
     "/lib"
   ],
